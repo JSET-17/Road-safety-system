@@ -1,9 +1,17 @@
 import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {VehiclesList} from './vehicles/VehiclesList';
+import { AddVehicle } from './vehicles/AddVehicle';
 
 const App = () => {
   return (
-    <div className='text-center'>
-      <h1>Road Safety System</h1>
+    <div className='container'>       
+      <BrowserRouter>
+        <Routes>
+          <Route exact path='/vehicles' element={<VehiclesList/>}/>
+          <Route exact path='/add' element={<AddVehicle/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

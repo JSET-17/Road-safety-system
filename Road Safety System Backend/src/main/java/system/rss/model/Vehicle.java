@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -22,11 +22,13 @@ public class Vehicle {
     private Integer id;
     private String typeVehicle;
     private String registrationCar;
-    private LocalDateTime manufacturingDate;
+    private Integer manufacturingDate;
     private String owner;
-    private LocalDateTime soatValidity;
-    private LocalDateTime MechanicalTechnicianValidity;
-    private String vin;
+    private LocalDate soatValidity;
+    private LocalDate mechanicalTechnicianValidity;
     private String chassisNumber;
+    private String vin;
+    private LocalDate preventiveMaintenanceDate;
+    private String frequencyPreventiveMaintenance;
     private boolean status;
 }
