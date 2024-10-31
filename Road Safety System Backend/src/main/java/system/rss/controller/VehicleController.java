@@ -3,10 +3,7 @@ package system.rss.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import system.rss.model.Vehicle;
 import system.rss.service.IVehicleService;
 
@@ -24,8 +21,12 @@ public class VehicleController {
     @GetMapping("/vehicles")// http://localhost:8080/rss-app/vehicles
     public List<Vehicle> getVehicle(){
         var vehicles = iVehicleService.readVehicle();
-
         vehicles.forEach((vehicle -> logger.info(vehicle.toString())));
         return vehicles;
+    }
+    @PostMapping("/vehicles")
+    public Vehicle createVehicle(@RequestBody Vehicle vehicle){
+        logger.info("Vehicle to add: " + vehicle);
+        return iVehicleService.saveVehicle(vehicle);
     }
 }
