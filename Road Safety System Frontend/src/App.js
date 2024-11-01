@@ -12,6 +12,7 @@ const App = () => {
     <div className='container'>       
       <BrowserRouter>
         <Routes>
+          <Route exact path='/update/:id' element={<UpdateVehicle/>}/>
           <Route exact path='/vehicles' element={<VehiclesList/>}/>
           <Route exact path='/add' element={<AddVehicle/>}/>
 
@@ -19,7 +20,7 @@ const App = () => {
           
           
           
-          <Route exact path='/update/:id' element={<UpdateVehicle/>}/>
+          
 
 
 
