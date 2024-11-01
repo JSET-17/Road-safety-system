@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {VehiclesList} from './vehicles/VehiclesList';
 import { AddVehicle } from './vehicles/AddVehicle';
+
 import { UpdateVehicle } from './vehicles/UpdateVehicle';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
           <Route exact path='/vehicles' element={<VehiclesList/>}/>
           <Route exact path='/add' element={<AddVehicle/>}/>
+
           <Route exact path='/update/:id' element={<UpdateVehicle/>}/>
         </Routes>
       </BrowserRouter>
