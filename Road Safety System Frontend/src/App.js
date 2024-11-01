@@ -15,7 +15,17 @@ const App = () => {
           <Route exact path='/vehicles' element={<VehiclesList/>}/>
           <Route exact path='/add' element={<AddVehicle/>}/>
 
+          
+          
+          
+          
           <Route exact path='/update/:id' element={<UpdateVehicle/>}/>
+
+
+
+
+
+          
         </Routes>
       </BrowserRouter>
     </div>
