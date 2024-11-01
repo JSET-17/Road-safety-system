@@ -4,11 +4,16 @@ import {VehiclesList} from './vehicles/VehiclesList';
 import { AddVehicle } from './vehicles/AddVehicle';
 import { Home } from './home/Home';
 
+import { UpdateVehicle } from './vehicles/UpdateVehicle';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App = () => {
   return (
     <div className='container'>       
       <BrowserRouter>
         <Routes>
+          <Route exact path='/update/:id' element={<UpdateVehicle/>}/>
           <Route exact path='/vehicles' element={<VehiclesList/>}/>
           <Route exact path='/add' element={<AddVehicle/>}/>
           <Route exact path='/home' element={<Home/>}/>
