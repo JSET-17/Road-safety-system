@@ -1,0 +1,18 @@
+.card {
+  cursor: pointer; /* O cualquier otro valor que estés usando */
+  background-color: #c1c1b2;
+  width: 500px;
+  height: 200px;
+}
+.card-title {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+.card-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
