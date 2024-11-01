@@ -13,10 +13,10 @@ const App = () => {
     <div className='container'>       
       <BrowserRouter>
         <Routes>
-          <Route exact path='/update/:id' element={<UpdateVehicle/>}/>
+          <Route exact path='/home' element={<Home/>}/>
           <Route exact path='/vehicles' element={<VehiclesList/>}/>
           <Route exact path='/add' element={<AddVehicle/>}/>
-          <Route exact path='/home' element={<Home/>}/>
+          <Route exact path='/update/:id' element={<UpdateVehicle/>}/>          
         </Routes>
       </BrowserRouter>
     </div>
