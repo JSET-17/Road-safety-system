@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navigation } from '../common_files/Navigation'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-export const AddVehicle = () => {
+export const UpdateVehicle = () => {
+
+    const url = "http://localhost:8080/rss-app/vehicles";
 
     let navigate = useNavigate();
+
+    const {id} = useParams();
 
     const [vehicle, setVehicle] = useState({
         typeVehicle:"",
@@ -27,14 +31,22 @@ export const AddVehicle = () => {
         preventiveMaintenanceDate, frequencyPreventiveMaintenance, status
     } = vehicle
 
+    useEffect(() => {
+        showVehicleSeleted();
+    },[])
+
+    const showVehicleSeleted = async () => {
+        const result = await axios.get(`${url}/${id}`)
+        setVehicle(result.data);
+    }
+
     const onInputChange = (e) => {
         setVehicle({...vehicle, [e.target.name]: e.target.value})
     }
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const url = "http://localhost:8080/rss-app/vehicles";
-        await axios.post(url, vehicle);
+        await axios.put(`${url}/${id}`, vehicle);
         navigate("/vehicles");
     }
 
@@ -42,7 +54,7 @@ export const AddVehicle = () => {
         <div className='container'>
             <Navigation />
             <div className='container text-center mt-3 mb-4'>
-                <h2>Registro</h2>
+                <h2>Modificar</h2>
             </div>
 
             <form onSubmit={(e)=>onSubmit(e)} className='row d-flex justify-content-center'>
@@ -200,7 +212,7 @@ export const AddVehicle = () => {
 
                 <div className='text-center mt-3'>
                     <button type="submit" className="btn btn-primary me-4">
-                        Registrar
+                        Modificar
                     </button>
                     <a href='/vehicles' className="btn btn-danger">
                         Regresar

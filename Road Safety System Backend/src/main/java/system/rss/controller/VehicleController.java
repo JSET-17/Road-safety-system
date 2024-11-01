@@ -3,7 +3,9 @@ package system.rss.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import system.rss.exception.ResourceNotFoundException;
 import system.rss.model.Vehicle;
 import system.rss.service.IVehicleService;
 
@@ -22,11 +24,88 @@ public class VehicleController {
     public List<Vehicle> getVehicle(){
         var vehicles = iVehicleService.readVehicle();
         vehicles.forEach((vehicle -> logger.info(vehicle.toString())));
+
         return vehicles;
     }
+
     @PostMapping("/vehicles")
     public Vehicle createVehicle(@RequestBody Vehicle vehicle){
         logger.info("Vehicle to add: " + vehicle);
+
         return iVehicleService.saveVehicle(vehicle);
+    }
+
+    @GetMapping("/vehicles/{id}")
+    public ResponseEntity<Vehicle> getVehicleById(@PathVariable Integer id){
+        Vehicle vehicle = iVehicleService.readVehicleById(id);
+
+        if (vehicle == null){
+            throw new ResourceNotFoundException("The vehicle with id " + id
+                    + " was not found.");
+        }
+
+        return  ResponseEntity.ok(vehicle);
+    }
+
+    @GetMapping("/vehicles/searchByRegistrationCar/{registrationCar}")
+    public ResponseEntity<Vehicle> getVehicleByRegistrationCar(@PathVariable String registrationCar){
+        Vehicle vehicle = iVehicleService.readVehicleByRegistrationCar(registrationCar);
+
+        if (vehicle == null){
+            throw new ResourceNotFoundException("The vehicle with license plate number" + registrationCar
+                    + " was not found.");
+        }
+
+        return  ResponseEntity.ok(vehicle);
+    }
+
+    @PutMapping("/vehicles/{id}")
+    public ResponseEntity<Vehicle> updateVehicle(@PathVariable Integer id, @RequestBody Vehicle vehicleSelected){
+        Vehicle vehicle = iVehicleService.readVehicleById(id);
+
+        if (vehicle == null){
+            throw new ResourceNotFoundException("The vehicle with id " + id
+                    + " was not found.");
+        }
+
+        vehicle.setTypeVehicle(vehicleSelected.getTypeVehicle());
+        vehicle.setRegistrationCar(vehicleSelected.getRegistrationCar());
+        vehicle.setManufacturingDate(vehicleSelected.getManufacturingDate());
+        vehicle.setOwner(vehicleSelected.getOwner());
+        vehicle.setVin(vehicleSelected.getVin());
+        vehicle.setChassisNumber(vehicleSelected.getChassisNumber());
+        vehicle.setSoatValidity(vehicleSelected.getSoatValidity());
+        vehicle.setMechanicalTechnicianValidity(vehicleSelected.getMechanicalTechnicianValidity());
+        vehicle.setPreventiveMaintenanceDate(vehicleSelected.getPreventiveMaintenanceDate());
+        vehicle.setFrequencyPreventiveMaintenance(vehicleSelected.getFrequencyPreventiveMaintenance());
+        //vehicle.setStatus(true);
+        iVehicleService.saveVehicle(vehicle);
+
+        return  ResponseEntity.ok(vehicle);
+    }
+
+    @PutMapping("/vehicles/delete/{id}")
+    public ResponseEntity<Vehicle> deleteVehicle(@PathVariable Integer id, @RequestBody Vehicle vehicleSelected){
+        Vehicle vehicle = iVehicleService.readVehicleById(id);
+
+        if (vehicle == null){
+            throw new ResourceNotFoundException("The vehicle with id " + id
+                    + " was not found.");
+        }
+
+        vehicle.setTypeVehicle(vehicleSelected.getTypeVehicle());
+        vehicle.setRegistrationCar(vehicleSelected.getRegistrationCar());
+        vehicle.setManufacturingDate(vehicleSelected.getManufacturingDate());
+        vehicle.setOwner(vehicleSelected.getOwner());
+        vehicle.setVin(vehicleSelected.getVin());
+        vehicle.setChassisNumber(vehicleSelected.getChassisNumber());
+        vehicle.setSoatValidity(vehicleSelected.getSoatValidity());
+        vehicle.setMechanicalTechnicianValidity(vehicleSelected.getMechanicalTechnicianValidity());
+        vehicle.setPreventiveMaintenanceDate(vehicleSelected.getPreventiveMaintenanceDate());
+        vehicle.setFrequencyPreventiveMaintenance(vehicleSelected.getFrequencyPreventiveMaintenance());
+        vehicle.setStatus(false);
+        iVehicleService.saveVehicle(vehicle);
+
+        return  ResponseEntity.ok(vehicle);
     }
 }
