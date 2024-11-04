@@ -1,0 +1,40 @@
+html, body{
+    background-color: #eeeeee;
+}
+
+label {
+    display: flex; /* Add this line */
+    align-items: center; /* Optional for vertical alignment */
+    margin-left: 15px;
+}
+
+.logo{
+    background-image: url(/public/imgs/Logo.png);
+    background-position: center center;
+    background-color: #c0c0c0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.login{
+    background-color: white;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control{
+    outline: none;
+    border: none;
+    color: white;
+    border-bottom: solid 1px black;
+    width: 250px;
+    margin-left: 10px;
+}
+
+.btn-login{
+    width: 150px;
+    margin-left: 90px;
+}
