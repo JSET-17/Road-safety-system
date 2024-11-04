@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Navigation } from '../common_files/Navigation';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const VehiclesList = () => {
 
     const url = "http://localhost:8080/rss-app/vehicles";
 
     const [vehicles, setVehicles] = useState([]);
+    const [selected, setSelected] = useState([]);
 
     useEffect(() => {
         uploadVehicles();
@@ -16,8 +17,17 @@ export const VehiclesList = () => {
     const uploadVehicles = async () => {
         const result = await axios.get(url);
         console.log("Result upload vehicles");
-        console.log(result.data);
         setVehicles(result.data);
+    }
+
+    const vehicleSelected = async (id) => {
+        const resultSelected = await axios.get(`${url}/${id}`);
+        setSelected(resultSelected.data);
+    }
+
+    const vehicleToDelete = async () => {
+        await axios.put(`${url}/delete/${selected.id}`, selected);
+        uploadVehicles();
     }
 
     return (
@@ -51,12 +61,18 @@ export const VehiclesList = () => {
                                 <td className='text-center'>
                                     <div>
                                         <Link to={`/update/${vehicle.id}`}
-                                            className='btn btn-warning btn-sm me-3'>
+                                            className='btn btn-warning btn-sm me-3'
+                                        >
                                             Modificar
                                         </Link>
-                                        <Link className='btn btn-danger btn-sm me-3'>
+                                        <button type="button"
+                                            className='btn btn-danger btn-sm me-3'
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#staticBackdrop"
+                                            onClick={() => vehicleSelected(vehicle.id)}
+                                        >
                                             Eliminar
-                                        </Link>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -64,21 +80,38 @@ export const VehiclesList = () => {
                     }
                 </tbody>
             </table>
-            <nav>
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link">Anterior</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Siguiente</a>
-                    </li>
-                </ul>
-            </nav>                   
+
+            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                aria-hidden="false">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5"
+                                id="staticBackdropLabel">Confirmar</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            ¿Está seguro de eliminar el vehiculo de placa
+                            "<strong>{selected.registrationCar}</strong>"?
+                        </div>
+                        <div className="modal-footer">
+                            <div className='container text-center'>
+                                <button type="button"
+                                    className="btn btn-danger me-4 fs-6"
+                                    onClick={vehicleToDelete}
+                                    data-bs-dismiss="modal"
+                                >
+                                    Confirmar
+                                </button>
+                                <button type="button" className="btn btn-secondary fs-6"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

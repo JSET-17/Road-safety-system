@@ -22,7 +22,7 @@ public class VehicleController {
 
     @GetMapping("/vehicles")// http://localhost:8080/rss-app/vehicles
     public List<Vehicle> getVehicle(){
-        var vehicles = iVehicleService.readVehicle();
+        var vehicles = iVehicleService.readVehiclesByStatus(1);
         vehicles.forEach((vehicle -> logger.info(vehicle.toString())));
 
         return vehicles;
@@ -103,7 +103,7 @@ public class VehicleController {
         vehicle.setMechanicalTechnicianValidity(vehicleSelected.getMechanicalTechnicianValidity());
         vehicle.setPreventiveMaintenanceDate(vehicleSelected.getPreventiveMaintenanceDate());
         vehicle.setFrequencyPreventiveMaintenance(vehicleSelected.getFrequencyPreventiveMaintenance());
-        vehicle.setStatus(false);
+        vehicle.setStatus(0);
         iVehicleService.saveVehicle(vehicle);
 
         return  ResponseEntity.ok(vehicle);

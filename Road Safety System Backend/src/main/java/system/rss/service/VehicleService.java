@@ -19,6 +19,11 @@ public class VehicleService implements IVehicleService{
     }
 
     @Override
+    public List<Vehicle> readVehiclesByStatus(Integer status) {
+        return iVehicleRepository.findByStatus(status);
+    }
+
+    @Override
     public Vehicle readVehicleById(Integer id) {
         return iVehicleRepository.findById(id).orElse(null);
     }
