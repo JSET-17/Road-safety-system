@@ -30,5 +30,5 @@ public class Vehicle {
     private String vin;
     private LocalDate preventiveMaintenanceDate;
     private String frequencyPreventiveMaintenance;
-    private boolean status;
+    private Integer status;
 }

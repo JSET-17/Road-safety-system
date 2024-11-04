@@ -7,12 +7,14 @@ import { AddVehicle } from './vehicles/AddVehicle';
 import { UpdateVehicle } from './vehicles/UpdateVehicle';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Login } from './login/Login';
 
 const App = () => {
   return (
     <div className='container'>       
       <BrowserRouter>
         <Routes>
+          <Route exact path='/login' element={<Login/>}/>
           <Route exact path='/home' element={<Home/>}/>
           <Route exact path='/vehicles' element={<VehiclesList/>}/>
           <Route exact path='/add' element={<AddVehicle/>}/>
