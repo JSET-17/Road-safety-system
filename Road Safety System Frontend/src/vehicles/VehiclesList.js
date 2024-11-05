@@ -32,8 +32,8 @@ export const VehiclesList = () => {
     const vehicleToDelete = async () => {
         try {
             await axios.put(`${url}/delete/${selected.id}`, selected);
-            setToastMessage('Vehiculo eliminado exitosamente.');
-            setShowToast(true);
+            //setToastMessage('Vehiculo eliminado exitosamente.');
+            //setShowToast(true);
             uploadVehicles();
         } catch (error) {
             console.error('Error al eliminar el vehiculo: ', error);

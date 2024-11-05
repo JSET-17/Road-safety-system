@@ -3,17 +3,17 @@ html, body{
 }
 
 label {
-    display: flex; /* Add this line */
-    align-items: center; /* Optional for vertical alignment */
+    align-items: center;
+    display: flex;    
     margin-left: 15px;
 }
 
 .logo{
-    background-image: url(/public/imgs/Logo.png);
-    background-position: center center;
     background-color: #c0c0c0;
-    border-top-left-radius: 5px;
+    background-image: url(/public/imgs/Logo.png);
+    background-position: center center;   
     border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
 .login{
@@ -25,16 +25,16 @@ label {
     flex-direction: column;
 }
 
-.form-control{
-    outline: none;
+.form-input{    
     border: none;
-    color: white;
     border-bottom: solid 1px black;
-    width: 250px;
+    color: black;
     margin-left: 10px;
+    outline: none;
+    width: 250px;
 }
 
-.btn-login{
-    width: 150px;
+.btn-login{    
     margin-left: 90px;
+    width: 150px;
 }
