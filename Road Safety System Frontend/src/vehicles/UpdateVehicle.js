@@ -22,7 +22,7 @@ export const UpdateVehicle = () => {
         chassisNumber:"",
         preventiveMaintenanceDate:"",
         frequencyPreventiveMaintenance:"",
-        status:true
+        status:1
 
     })
 

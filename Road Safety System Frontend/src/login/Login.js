@@ -8,7 +8,7 @@ export const Login = () => {
                 <div className='col logo d-none d-lg-block col-md-5 col-lg-5 col-xl-6'></div>
                 <div className='col p-5 rounded login'>
                     <h2 className='fw-bold text-center'>Iniciar Sesión</h2>
-                    <form className='mt-5 form'>
+                    <form className='mt-5'>
                         <label>
                             <i className="bi bi-person-fill">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@ export const Login = () => {
                                 </svg>
                             </i>
                             <input type='text'
-                                className='form-control'
+                                className='form-input'
                                 name='user'
                                 placeholder='Usuario' />
                         </label>
@@ -37,7 +37,7 @@ export const Login = () => {
                                 </svg>
                             </i>                            
                             <input type='password'
-                                className='form-control'
+                                className=' form-input mt-3'
                                 name='pass'
                                 placeholder='Contraseña' />
                         </label>
