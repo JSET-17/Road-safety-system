@@ -1,8 +1,11 @@
-.card {
+#main-card {
   cursor: pointer; /* O cualquier otro valor que estés usando */
   background-color: #c1c1b2;
-  width: 500px;
+  width: 530px;
   height: 200px;
+}
+#main-card:hover {
+  background-color: #464646;
 }
 .card-title {
   position: relative;
@@ -15,4 +18,13 @@
   top: 50%;
   transform: translateY(-50%);
   text-align: center;
+}
+#main-card-danger {
+  cursor: pointer; /* O cualquier otro valor que estés usando */
+  background-color: #ff4343;
+  width: 530px;
+  height: 200px; 
+}
+#main-card-danger:hover{
+  background-color: #c82121;
 }
