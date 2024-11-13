@@ -18,7 +18,7 @@ export const AddVehicle = () => {
         chassisNumber:"",
         preventiveMaintenanceDate:"",
         frequencyPreventiveMaintenance:"",
-        status:true
+        status:1
 
     })
 

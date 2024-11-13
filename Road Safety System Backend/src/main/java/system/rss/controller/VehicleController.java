@@ -132,7 +132,7 @@ public class VehicleController {
         vehicle.setMechanicalTechnicianValidity(vehicleSelected.getMechanicalTechnicianValidity());
         vehicle.setPreventiveMaintenanceDate(vehicleSelected.getPreventiveMaintenanceDate());
         vehicle.setFrequencyPreventiveMaintenance(vehicleSelected.getFrequencyPreventiveMaintenance());
-        vehicle.setStatus(false);
+        vehicle.setStatus(0);
         iVehicleService.saveVehicle(vehicle);
 
         return ResponseEntity.ok(vehicle);

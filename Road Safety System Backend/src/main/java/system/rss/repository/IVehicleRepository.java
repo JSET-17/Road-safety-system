@@ -13,8 +13,12 @@ public interface IVehicleRepository extends JpaRepository<Vehicle, Integer> {
     @Query("SELECT v FROM Vehicle v WHERE v.registrationCar = :registrationCar")
     Optional<Vehicle> findByRegistrationCar(@Param("registrationCar") String registrationCar);
 
+
     @Query("SELECT v FROM Vehicle v WHERE v.soatValidity BETWEEN :startDate AND :endDate")
     Optional<List<Vehicle>> findByExpirationSOAT(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+    @Query("SELECT v FROM Vehicle v WHERE v.status = :status")
+    List<Vehicle> findByStatus(@Param("status") Integer status);
 
     /**
      * Esto no funciona, no se crea la query por defecto, toca hacerlo de forma
