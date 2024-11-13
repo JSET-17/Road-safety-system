@@ -31,7 +31,7 @@ export const AddVehicle = () => {
         setVehicle({...vehicle, [e.target.name]: e.target.value})
     }
 
-    const onSubmit = async (e) => {
+    const onSubmit = async (e) => { 
         e.preventDefault();
         const url = "http://localhost:8080/rss-app/vehicles";
         await axios.post(url, vehicle);

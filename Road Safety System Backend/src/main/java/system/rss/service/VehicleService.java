@@ -1,5 +1,6 @@
 package system.rss.service;
 
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import system.rss.model.Vehicle;
@@ -9,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class VehicleService implements IVehicleService{
+public class VehicleService implements IVehicleService {
+
     @Autowired
     private IVehicleRepository iVehicleRepository;
 
@@ -37,4 +39,25 @@ public class VehicleService implements IVehicleService{
     public Vehicle saveVehicle(Vehicle vehicle) {
         return iVehicleRepository.save(vehicle);
     }
+
+    @Override
+    public List<Vehicle> getByExpirationSOAT(LocalDate initDate, LocalDate finalDate) {
+        return iVehicleRepository.findByExpirationSOAT(initDate, finalDate).orElse(null);
+    }
+
+    @Override
+    public List<Vehicle> getByNearPreventiveMaintenance(LocalDate initDate, LocalDate finalDate) {
+        return iVehicleRepository.findByExpirationSOAT(initDate, finalDate).orElse(null);
+    }
+
+    @Override
+    public List<Vehicle> getByNearTechnomechanicalReview(LocalDate initDate, LocalDate finalDate) {
+        return iVehicleRepository.findByExpirationSOAT(initDate, finalDate).orElse(null);
+    }
+
+    @Override
+    public List<Vehicle> getByDefeated(LocalDate initDate, LocalDate finalDate) {
+        return iVehicleRepository.findByExpirationSOAT(initDate, finalDate).orElse(null);
+    }
+
 }
